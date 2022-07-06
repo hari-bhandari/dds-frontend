@@ -1,4 +1,4 @@
-import {Table, Tag, Button} from 'antd';
+import {Table, Tag, Button, Popconfirm} from 'antd';
 import React,{useContext} from 'react';
 import {DownloadOutlined,DeleteOutlined} from '@ant-design/icons';
 import axios from "axios";
@@ -77,9 +77,19 @@ const VersionTable = () => {
         title: 'Functions',
         dataIndex: 'file',
         key: 'file',
-        render: (_,data) => <Button type="danger" shape="circle" icon={<DeleteOutlined/>} size={"small"} color={'green'} onClick={() => {
-            deleteVersion(data._id)
-        }}/>
+        render: (_,data) =>   <Popconfirm
+            title="Are you sure to delete this version?"
+            onConfirm={() => {
+                deleteVersion(data._id)
+            }}
+            onCancel={()=>{}}
+            okText="Yes"
+            cancelText="No"
+        >
+            <Button type="danger" shape="circle" icon={<DeleteOutlined/>} size={"small"} color={'green'} onClick={() => {
+
+            }}/>
+        </Popconfirm>
     });
 
     const fetchData = async () => {
