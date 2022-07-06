@@ -63,15 +63,7 @@ const VersionTable = () => {
                 </>
             ),
         },
-        {
-            title: 'Download',
-            dataIndex: 'file',
-            key: 'file',
-            render: (text) => <Button type="primary" shape="circle" icon={<DownloadOutlined/>} size={"small"} color={'green'} onClick={() => {
-                redirect(text)
-            }}/>
-            ,
-        },
+
     ];
     isAuthenticated && columns.push({
         title: 'Functions',
@@ -91,11 +83,22 @@ const VersionTable = () => {
             }}/>
         </Popconfirm>
     });
-
+    isAuthenticated && columns.push({
+        title: 'Download',
+        dataIndex: 'file',
+        key: 'file',
+        render: (text) => <Button type="primary" shape="circle" icon={<DownloadOutlined/>} size={"small"} color={'green'} onClick={() => {
+            redirect(text)
+        }}/>
+        ,
+    });
     const fetchData = async () => {
         const data = await axios.get('https://dds-versioning.herokuapp.com/api/version')
         setData(data.data.data)
     }
+
+
+
     React.useEffect(() => {
         fetchData()
     }, [])
