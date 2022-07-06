@@ -20,7 +20,7 @@ const Navbar = () => {
         <nav className="navbar navbar-dark navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
             <div className="container"><a className="navbar-brand d-flex align-items-center" href="/">
                 <span className=" d-flex justify-content-center align-items-center me-2 bs-icon">
-                    <img src={DDS} alt="" height={'50px'}/></span></a>
+                    <img src={DDS} alt="" height={'70px'}/></span></a>
                 <button data-bs-toggle="collapse" className="navbar-toggler" data-bs-target="#navcol-1"><span className="visually-hidden">Toggle navigation</span><span className="navbar-toggler-icon"></span></button>
                 <div className="collapse navbar-collapse" id="navcol-1">
                     <ul className="navbar-nav mx-auto">
