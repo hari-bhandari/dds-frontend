@@ -84,7 +84,7 @@ const Login = () => {
                                     <div className="mb-3"><input className="form-control" type="email" name="email" placeholder="Email" onChange={onChangeEmail}/></div>
                                     <div className="mb-3"><input className="form-control" type="password" name="password" placeholder="Password" onChange={onChangePassword}/></div>
                                     <div className="mb-3">
-                                        <button className="btn btn-primary shadow d-block w-100" type="submit">Sign up</button>
+                                        <button className="btn btn-primary shadow d-block w-100" type="submit">Login</button>
                                     </div>
                                 </form>
                             </div>
