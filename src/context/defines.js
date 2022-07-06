@@ -1,0 +1,9 @@
+
+export const AUTH = {
+  LOG_IN: "LOG_IN",
+  LOG_IN_ERROR: "LOG_IN_ERROR",
+  LOG_OUT:"LOG_OUT",
+  LOAD_USER:"LOAD_USER",
+  LOAD_USER_FAIL:"LOAD_USER_FAIL",
+};
+

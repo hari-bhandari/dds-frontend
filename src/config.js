@@ -1,0 +1,1 @@
+export const PUBLIC_API_URL = 'https://dds-versioning.herokuapp.com';
