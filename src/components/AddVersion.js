@@ -1,4 +1,6 @@
 import { InboxOutlined } from '@ant-design/icons';
+import { Editor } from '@tinymce/tinymce-react';
+import {ChangeLog} from "./htmltemplate";
 import {
     Button,
     Input,
@@ -8,7 +10,7 @@ import {
     Upload,notification
 } from 'antd';
 import axios from 'axios';
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {PUBLIC_API_URL} from "../config";
 const { Option } = Select;
 const formItemLayout = {
@@ -31,6 +33,8 @@ const normFile = (e) => {
 };
 
 const App = () => {
+    const [changeLog, setChangelog] = useState('')
+
     const openNotification = () => {
         notification.open({
             message: 'Successfully created new version',
@@ -44,7 +48,7 @@ const App = () => {
     const onFinish = async (values) => {
         const {description,updateType,version,forceUpdate}=values
         const file=values.dragger[0].response.data
-        const response=await axios.post(`${PUBLIC_API_URL}/api/version`,{description,updateType,version,forceUpdate,file})
+        const response=await axios.post(`${PUBLIC_API_URL}/api/version`,{description,updateType,version,forceUpdate,file,changeLog })
         if (response.status===201) {
             openNotification()
         //    refresh the page
@@ -56,7 +60,7 @@ const App = () => {
     //update the client using antd notification
 
     };
-
+    const editorRef = useRef('');
     return (
         <>
             {/*width 100%*/}
@@ -99,18 +103,44 @@ const App = () => {
             >
                 <Input />
             </Form.Item>
-
+                <Form.Item
+                    label="Short Description"
+                    name="description"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input the description of version!',
+                        },
+                    ]}
+                >
+                    <Input.TextArea />
+                </Form.Item>
             <Form.Item
-                label="Description"
-                name="description"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input the description of version!',
-                    },
-                ]}
+                label="Change Log"
+                name="changeLog"
             >
-                <Input.TextArea />
+                <Editor
+                    apiKey='atg8vm8gu6jvj28oyysi3c7ykf4sax4j7ef260tu4bwzdkou'
+                    onInit={(evt, editor) => editorRef.current = editor}
+                    onEditorChange={(content, editor) => {
+                        setChangelog(content)}
+                    }
+                    initialValue={ChangeLog}
+                    init={{
+                        height: 300,
+                        menubar: false,
+                        plugins: [
+                            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                        ],
+                        toolbar: 'undo redo | blocks | ' +
+                            'bold italic forecolor heading | alignleft aligncenter ' +
+                            'alignright alignjustify | bullist numlist outdent indent | ' +
+                            'removeformat | help',
+                        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                    }}
+                />
             </Form.Item>
 
             <Form.Item label="Upload the update file">

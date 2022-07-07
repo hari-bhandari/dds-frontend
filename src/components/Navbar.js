@@ -34,7 +34,7 @@ const Navbar = () => {
                 </div>
 
             </div>
-            <Modal title="Add new Version" visible={isModalVisible} onCancel={handleCancel} footer={false}>
+            <Modal title="Add new Version" visible={isModalVisible} onCancel={handleCancel} footer={false} width={720}>
                 <AddVersion />
             </Modal>
         </nav>

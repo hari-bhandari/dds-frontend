@@ -1,0 +1,1 @@
+export const ChangeLog='<p><strong><span style=\"color: #e03e2d;\">Security Fixes</span></strong></p>\n<ul>\n<li>&nbsp;</li>\n</ul>\n<p><strong><span style=\"color: #e67e23;\">Bug Fixes</span></strong></p>\n<ul>\n<li>&nbsp;</li>\n</ul>\n<p><strong><span style=\"color: #169179;\">New Features</span></strong></p>\n<ul>\n<li>&nbsp;</li>\n</ul>'
