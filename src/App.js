@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import 'antd/dist/antd.min.css';
 import authContext from "./context/auth/authContext";
+import Documentation from "./components/Documentation";
 function App() {
     const auth = useContext(authContext);
     const {loadUser} = auth;
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+          <Route path={'/docs'} element={<Documentation/>} />
       </Routes>
     </>
   );

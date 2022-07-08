@@ -25,6 +25,7 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navcol-1">
                     <ul className="navbar-nav mx-auto">
                         <li className="nav-item"><a className="nav-link active" href="/">Home</a></li>
+                        {isAuthenticated&&<li className="nav-item"><a className="nav-link active" href="/docs">Docs</a></li>}
                     </ul>
                     {isAuthenticated ? (<a className="btn btn-primary shadow" role="button" onClick={showModal}>Add version</a>) : (<a className="btn btn-primary shadow" role="button" href="/login">Login</a>)}
                     {isAuthenticated&&<a className="btn btn-primary shadow" role="button" onClick={()=>{
