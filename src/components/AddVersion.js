@@ -1,6 +1,5 @@
 import { InboxOutlined } from '@ant-design/icons';
 import { Editor } from '@tinymce/tinymce-react';
-import {ChangeLog} from "./htmltemplate";
 import {
     Button,
     Input,
@@ -10,9 +9,13 @@ import {
     Upload,notification
 } from 'antd';
 import axios from 'axios';
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {PUBLIC_API_URL} from "../config";
+import {ChangeLog} from "./htmltemplate";
+
 const { Option } = Select;
+
+
 const formItemLayout = {
     labelCol: {
         span: 6,
@@ -32,8 +35,18 @@ const normFile = (e) => {
     return e?.fileList;
 };
 
-const App = () => {
-    const [changeLog, setChangelog] = useState('')
+const App = () =>{
+    useEffect(() => {
+        const handler = (e) => {
+            if (e.target.closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root") !== null) {
+                e.stopImmediatePropagation();
+            }
+        };
+        document.addEventListener("focusin", handler);
+        return () => document.removeEventListener("focusin", handler);
+    }, []);
+
+    const [changeLog, setChangelog] = useState(ChangeLog)
 
     const openNotification = () => {
         notification.open({
@@ -122,10 +135,14 @@ const App = () => {
                 <Editor
                     apiKey='atg8vm8gu6jvj28oyysi3c7ykf4sax4j7ef260tu4bwzdkou'
                     onInit={(evt, editor) => editorRef.current = editor}
+                    cloudChannel='6'
+
                     onEditorChange={(content, editor) => {
                         setChangelog(content)}
                     }
+
                     initialValue={ChangeLog}
+                    value={changeLog}
                     init={{
                         height: 300,
                         menubar: false,
